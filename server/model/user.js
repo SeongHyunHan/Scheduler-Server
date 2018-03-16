@@ -5,7 +5,8 @@ var UserSchema = new mongoose.Schema({
         type : Number,
         required: true,
         minLength: 9,
-        trim: true
+        trim: true,
+        unique: true
     },
     name : {
         type : String,
@@ -14,9 +15,21 @@ var UserSchema = new mongoose.Schema({
         trim: true
     },
     token: {
-        type: String,
-        required: false,
-        minLength: 1
+        android : {
+            type: String,
+            required: false,
+            minLength: 1
+        },
+        aspn : {
+            type: String,
+            required: false,
+            minLength: 1
+        },
+        web : {
+            type: String,
+            required: false,
+            minLength: 1
+        }
     }
 });
 
