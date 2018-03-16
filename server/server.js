@@ -37,7 +37,13 @@ app.listen(port, () => {
     console.log(`Server started at ${port}`);
     // Firebase
     //  - Initialize
-    const serviceAccount = require('../cert/scheduler-165b3-firebase-adminsdk-iybs7-ad72d2fc3d.json') || JSON.parse(process.env.FCM) ;
+    var serviceAccount;
+    if(port == 5432){
+        serviceAccount = require('../cert/scheduler-165b3-firebase-adminsdk-iybs7-ad72d2fc3d.json')
+    }else{
+        serviceAccount = JSON.parse(process.env.FCM);
+    }
+       
 
     admin.initializeApp({
         credential: admin.credential.cert(serviceAccount),
