@@ -5,8 +5,7 @@ var UserSchema = new mongoose.Schema({
         type : Number,
         required: true,
         minLength: 9,
-        trim: true,
-        unique: true
+        trim: true
     },
     name : {
         type : String,
