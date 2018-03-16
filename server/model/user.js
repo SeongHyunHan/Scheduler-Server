@@ -18,17 +18,20 @@ var UserSchema = new mongoose.Schema({
         android : {
             type: String,
             required: false,
-            minLength: 1
+            minLength: 1,
+            unique: true
         },
         aspn : {
             type: String,
             required: false,
-            minLength: 1
+            minLength: 1,
+            unique: true
         },
         web : {
             type: String,
             required: false,
-            minLength: 1
+            minLength: 1,
+            unique: true
         }
     }
 });
