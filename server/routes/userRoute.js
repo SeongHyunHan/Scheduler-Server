@@ -23,6 +23,11 @@ app.post('/', (req, res) => {
     });
 });
 
+//  - Update User
+app.post('/', (req, res) => {
+
+});
+
 //  - Get User
 app.get('/', (req,res) => {
     User.find().then((users) => {
@@ -34,6 +39,62 @@ app.get('/', (req,res) => {
         res.status(400).send({result: false, message: "Error", e});
     });
 });
+
+//  - Get User by Android Token
+app.get('/android/:token', (req, res) => {
+    var token = req.params.token;
+    User.find().then((users) => {
+        if(!users){
+            return res.status(400).send({result: false, message: "User not found"});
+        }
+        const user = users.filter(oneUser => oneUser.token.android == token);
+
+        if(user == null){
+            return res.status(400).send({result: false, message: "User not found"});
+        }
+        res.send({result: true, message: "User Found", user});
+    }).catch((e) => {
+        res.status(400).send({result: false, message: "Error", e});
+    })
+});
+
+//  - Get User by Apple(ASPN) Token
+app.get('/aspn/:token', (req, res) => {
+    var token = req.params.token;
+    User.find().then((users) => {
+        if(!users){
+            return res.status(400).send({result: false, message: "User not found"});
+        }
+        const user = users.filter(oneUser => oneUser.token.aspn == token);
+
+
+        if(user == null){
+            return res.status(400).send({result:false, message: "User not found"});
+        }
+        res.send({result: true, message: "User Found", user});
+    }).catch((e) => {
+        res.status(400).send({result: false, message: "Error", e});
+    })
+})
+
+//  - Get User by Web Token
+app.get('/web/:token', (req, res) => {
+    var token = req.params.token;
+    User.find().then((users) => {
+        if(!users){
+            return res.status(400).send({result: false, message: "User not found"});
+        }
+
+        const user = users.filter(oneUser => oneUser.token.web == token);
+
+        if(user == null){
+            return res.status(400).send({result: false, message: "User not found"});
+        }
+        res.send({result: true, message: "User Found", user})
+    }).catch((e) => {
+        res.status(400).send({result: false, message: "Error", e});
+    })
+})
 
 //  - Remove User
 app.delete('/', (req, res) => {
