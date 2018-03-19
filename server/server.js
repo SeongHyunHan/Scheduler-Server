@@ -38,7 +38,7 @@ app.listen(port, () => {
     // Firebase
     //  - Initialize
     var serviceAccount;
-    if(port == 5432){
+    if(port == 3000){
         serviceAccount = require('../cert/scheduler-165b3-firebase-adminsdk-iybs7-ad72d2fc3d.json')
     }else{
         serviceAccount = JSON.parse(process.env.FCM);
