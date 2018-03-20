@@ -47,7 +47,7 @@ app.get('/android/:token', (req, res) => {
         if(!users){
             return res.status(400).send({result: false, message: "User not found"});
         }
-        const user = users.filter(oneUser => oneUser.token.android == token);
+        const user = users.filter(oneUser => oneUser.token == token);
 
         if(user == null){
             return res.status(400).send({result: false, message: "User not found"});
