@@ -15,24 +15,14 @@ var UserSchema = new mongoose.Schema({
         trim: true
     },
     token: {
-        android : {
-            type: String,
-            required: false,
-            minLength: 1,
-            unique: true
-        },
-        aspn : {
-            type: String,
-            required: false,
-            minLength: 1,
-            unique: true
-        },
-        web : {
-            type: String,
-            required: false,
-            minLength: 1,
-            unique: true
-        }
+        type: String,
+        required: false,
+        minLength: 1,
+        unique: true
+    },
+    deviceType: {
+        type: String,
+        required: true
     }
 });
 

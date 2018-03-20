@@ -5,15 +5,15 @@ const { User } = require('../model/user');
 
 const app = express();
 
-
 // User
 //  - Create User
 app.post('/', (req, res) => {
-    var body = _.pick(req.body, ['name', 'studentId', 'token']);
+    var body = _.pick(req.body, ['name', 'studentId', 'token', 'deviceType']);
     var user = new User({
         studentId: body.studentId,
         name: body.name,
-        token: body.token
+        token: body.token,
+        deviceType: body.deviceType
     });
 
     user.save().then((user) => {
