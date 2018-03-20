@@ -8,6 +8,7 @@ const _ = require('lodash');
 const bodyParser = require('body-parser');
 const { ObjectID } = require("mongodb"); 
 const admin = require('firebase-admin');
+const swaggerUi = require('swagger-ui-express');
 
 // Internal modules
 const { mongoose } = require('./db/connection');
@@ -15,6 +16,7 @@ const UserRouter = require('./routes/userRoute');
 const CourseRouter = require('./routes/courseRoute');
 const GradeRouter = require('./routes/gradeRoute');
 const { User } = require('./model/user');
+const swaggerDocument = require('../swagger.json');
 
 
 const { dailySchedule } = require('./routes/scheduler');
@@ -28,9 +30,10 @@ const app = express();
 // Add bodyParser middleware for POST methods
 app.use(bodyParser.json());
 
-app.use('/user', UserRouter);
-app.use('/course', CourseRouter);
-app.use('/grade', GradeRouter);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('api/user', UserRouter);
+app.use('api/course', CourseRouter);
+app.use('api/grade', GradeRouter);
 
 // Start Server if server is up print log
 app.listen(port, () => {
